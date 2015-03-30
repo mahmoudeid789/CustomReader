@@ -133,7 +133,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 		myImageSynchronizer.clear();
 		super.onBSDestroy();
 	}
-	
+
 	private static byte[] MD5(Bitmap image) {
 		// TODO: possible too large array(s)?
 		final int bytesNum = image.getWidth() * image.getHeight() * 2;
@@ -211,7 +211,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 		YotaBackScreenWidget(Context context) {
 			super(context);
 		}
-		
+
 		private volatile byte[] myStoredMD5 = null;
 
 		@Override

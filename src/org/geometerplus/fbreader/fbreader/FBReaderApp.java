@@ -286,6 +286,7 @@ public final class FBReaderApp extends ZLApplication {
 		final FBView fbView = getTextView();
 
 		final Bookmark bookmark = new Bookmark(
+			Collection,
 			Model.Book,
 			fbView.getModel().getId(),
 			fbView.getSelectedSnippet(),
@@ -359,7 +360,7 @@ public final class FBReaderApp extends ZLApplication {
 				if (pos == null) {
 					pos = new ZLTextFixedPosition(0, 0, 0);
 				}
-				bm = new Bookmark(book, "", new EmptyTextSnippet(pos), false);
+				bm = new Bookmark(Collection, book, "", new EmptyTextSnippet(pos), false);
 			}
 
 			boolean open = ViewOptions.YotaDrawOnBackScreen.getValue() ^ !myWindow.isYotaService();
@@ -659,6 +660,7 @@ public final class FBReaderApp extends ZLApplication {
 			}
 
 			updateInvisibleBookmarksList(Bookmark.createBookmark(
+				Collection,
 				book,
 				textView.getModel().getId(),
 				cursor,
@@ -683,6 +685,7 @@ public final class FBReaderApp extends ZLApplication {
 		}
 
 		return Bookmark.createBookmark(
+			Collection,
 			Model.Book,
 			view.getModel().getId(),
 			cursor,

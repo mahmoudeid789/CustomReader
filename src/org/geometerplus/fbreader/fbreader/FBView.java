@@ -91,6 +91,10 @@ public final class FBView extends ZLTextView {
 			return true;
 		}
 
+		if (ZLibrary.Instance().ScreenHintStageOption.getValue() < 3) {
+			return onFingerSingleTapLastResort(x, y);
+		}
+
 		final ZLTextRegion hyperlinkRegion = findRegion(x, y, maxSelectionDistance(), ZLTextRegion.HyperlinkFilter);
 		if (hyperlinkRegion != null) {
 			selectRegion(hyperlinkRegion);

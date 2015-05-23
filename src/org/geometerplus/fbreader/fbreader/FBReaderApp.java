@@ -78,7 +78,7 @@ public final class FBReaderApp extends ZLApplication {
 
 	private SyncData mySyncData = new SyncData();
 
-	public FBReaderApp(IBookCollection collection) {
+	public FBReaderApp(final IBookCollection<Book> collection) {
 		Collection = collection;
 
 		collection.addListener(new IBookCollection.Listener<Book>() {
@@ -86,7 +86,7 @@ public final class FBReaderApp extends ZLApplication {
 				switch (event) {
 					case BookmarkStyleChanged:
 					case BookmarksUpdated:
-						if (Model != null && (book == null || book.equals(Model.Book))) {
+						if (Model != null && (book == null || collection.sameBook(book, Model.Book))) {
 							if (BookTextView.getModel() != null) {
 								setBookmarkHighlightings(BookTextView, null);
 							}
@@ -315,7 +315,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	private synchronized void openBookInternal(Book book, Bookmark bookmark, boolean force) {
-		if (!force && Model != null && book.equals(Model.Book)) {
+		if (!force && Model != null && Collection.sameBook(book, Model.Book)) {
 			if (bookmark != null) {
 				gotoBookmark(bookmark, false);
 			}
@@ -527,7 +527,7 @@ public final class FBReaderApp extends ZLApplication {
 	public void useSyncInfo(boolean openOtherBook, Notifier notifier) {
 		if (openOtherBook && SyncOptions.ChangeCurrentBook.getValue()) {
 			final Book fromServer = getCurrentServerBook(notifier);
-			if (fromServer != null && !fromServer.equals(Collection.getRecentBook(0))) {
+			if (fromServer != null && !Collection.sameBook(fromServer, Collection.getRecentBook(0))) {
 				openBook(fromServer, null, null, notifier);
 				return;
 			}
@@ -706,7 +706,7 @@ public final class FBReaderApp extends ZLApplication {
 	}
 
 	public void onBookUpdated(Book book) {
-		if (Model == null || Model.Book == null || !Model.Book.equals(book)) {
+		if (Model == null || Model.Book == null || !Collection.sameBook(Model.Book, book)) {
 			return;
 		}
 

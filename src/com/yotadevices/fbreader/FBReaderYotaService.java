@@ -419,7 +419,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 		} else {
 			myBackScreenIsActive = new ViewOptions().YotaDrawOnBackScreen.getValue();
 		}
-		myCurrentBook = FBReaderIntents.getBookExtra(intent);
+		myCurrentBook = FBReaderIntents.getBookExtra(intent, myFBReaderApp.Collection);
 		if (myCurrentBook != null) {
 			((BookCollectionShadow)myFBReaderApp.Collection).bindToService(this, new Runnable() {
 				@Override

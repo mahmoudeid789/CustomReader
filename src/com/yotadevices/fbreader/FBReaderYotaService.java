@@ -51,6 +51,7 @@ import org.geometerplus.fbreader.fbreader.FBReaderApp;
 import org.geometerplus.fbreader.fbreader.options.ViewOptions;
 
 import org.geometerplus.android.fbreader.api.FBReaderIntents;
+import org.geometerplus.android.fbreader.libraryService.BookCollectionShadow;
 import org.geometerplus.android.fbreader.util.AndroidImageSynchronizer;
 
 /**
@@ -342,7 +343,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 		} else {
 			myBackScreenIsActive = new ViewOptions().YotaDrawOnBackScreen.getValue();
 		}
-		myCurrentBook = FBReaderIntents.getBookExtra(intent);
+		myCurrentBook = FBReaderIntents.getBookExtra(intent, new BookCollectionShadow());
 		if (myCurrentBook != null) {
 			((BookCollectionShadow)myFBReaderApp.Collection).bindToService(this, new Runnable() {
 				@Override

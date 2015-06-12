@@ -273,7 +273,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 
 			Bitmap coverBitmap = null;
 			if (currentBook != null) {
-				final ZLImage image = BookUtil.getCover(currentBook);
+				final ZLImage image = CoverUtil.getCover(currentBook, PluginCollection.Instance());
 
 				if (image != null) {
 					if (image instanceof ZLImageProxy) {

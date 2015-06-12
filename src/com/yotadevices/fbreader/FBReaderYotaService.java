@@ -49,6 +49,7 @@ import org.geometerplus.fbreader.book.*;
 import org.geometerplus.fbreader.fbreader.ActionCode;
 import org.geometerplus.fbreader.fbreader.FBReaderApp;
 import org.geometerplus.fbreader.fbreader.options.ViewOptions;
+import org.geometerplus.fbreader.formats.PluginCollection;
 
 import org.geometerplus.android.fbreader.api.FBReaderIntents;
 import org.geometerplus.android.fbreader.libraryService.BookCollectionShadow;
@@ -247,7 +248,7 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 
 			Bitmap coverBitmap = null;
 			if (currentBook != null) {
-				final ZLImage image = BookUtil.getCover(currentBook);
+				final ZLImage image = CoverUtil.getCover(currentBook, PluginCollection.Instance());
 
 				if (image != null) {
 					if (image instanceof ZLImageProxy) {

@@ -47,9 +47,8 @@ import org.geometerplus.zlibrary.ui.android.library.UncaughtExceptionHandler;
 import org.geometerplus.zlibrary.ui.android.library.ZLAndroidLibrary;
 import org.geometerplus.zlibrary.ui.android.view.AndroidFontUtil;
 import org.geometerplus.zlibrary.ui.android.view.ZLAndroidWidget;
-import org.geometerplus.android.fbreader.FBReader;
-import org.geometerplus.android.fbreader.api.FBReaderIntents;
-import org.geometerplus.android.fbreader.libraryService.BookCollectionShadow;
+
+import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.book.*;
 import org.geometerplus.fbreader.fbreader.ActionCode;
 import org.geometerplus.fbreader.fbreader.FBReaderApp;
@@ -59,8 +58,10 @@ import org.geometerplus.fbreader.fbreader.options.MiscOptions;
 import org.geometerplus.fbreader.formats.*;
 import org.geometerplus.fbreader.formats.external.ExternalFormatPlugin;
 
+import org.geometerplus.android.fbreader.FBReader;
 import org.geometerplus.android.fbreader.api.FBReaderIntents;
 import org.geometerplus.android.fbreader.formatPlugin.PluginUtil;
+import org.geometerplus.android.fbreader.libraryService.BookCollectionShadow;
 import org.geometerplus.android.fbreader.util.AndroidImageSynchronizer;
 
 /**
@@ -273,7 +274,10 @@ public class FBReaderYotaService extends BSActivity implements ZLApplicationWind
 
 			Bitmap coverBitmap = null;
 			if (currentBook != null) {
-				final ZLImage image = CoverUtil.getCover(currentBook, PluginCollection.Instance());
+				final ZLImage image = CoverUtil.getCover(
+					currentBook,
+					PluginCollection.Instance(Paths.systemInfo(FBReaderYotaService.this))
+				);
 
 				if (image != null) {
 					if (image instanceof ZLImageProxy) {
